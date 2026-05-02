@@ -1,7 +1,48 @@
 import React from "react";
 import { useState } from "react";
 
+const skillData = {
+  frontend: [
+    { name: "React", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+    { name: "Vue", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
+    { name: "Angular", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" },
+    { name: "Next.js", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+    { name: "Nuxt.js", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg" },
+    { name: "HTML", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+    { name: "CSS", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+    { name: "Tailwind", img: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" },
+    { name: "Material UI", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" },
+    { name: "SSO Integration", img: "https://cdn-icons-png.flaticon.com/512/3064/3064197.png" },
+    { name: "API Integration", img: "https://cdn-icons-png.flaticon.com/512/2165/2165004.png" },
 
+
+  ],
+
+  backend: [
+    { name: "Node.js", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+    { name: "Node.js", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+    { name: "Express.js", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+    { name: "REST API", img: "https://cdn-icons-png.flaticon.com/512/2165/2165004.png" },
+    { name: "Middleware", img: "https://cdn-icons-png.flaticon.com/512/2721/2721264.png" },
+    { name: "Firebase Auth", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+
+  ],
+
+  database: [
+    { name: "MongoDB", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+  ],
+
+  state: [
+    { name: "Redux", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
+    { name: "Context API", img: "https://cdn-icons-png.flaticon.com/512/919/919851.png" },
+  ],
+
+  cms: [
+    { name: "WordPress", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg" },
+    { name: "Elementor", img: "https://cdn-icons-png.flaticon.com/512/5968/5968779.png" },
+    { name: "Payment Integration", img: "https://cdn-icons-png.flaticon.com/512/2331/2331966.png" },
+  ],
+};
 const projects = [
   {
     title: "Bhumipedia (Gov Project)",
@@ -24,6 +65,8 @@ const projects = [
 ];
 
 export default function App() {
+  const [activeTab, setActiveTab] = useState("frontend");
+
   return (
     <div className="font-sans text-gray-800">
 
@@ -95,34 +138,52 @@ export default function App() {
       <section id="about" className="py-20 text-center max-w-3xl mx-auto px-6">
         <h2 className="text-3xl font-bold mb-4">About Me</h2>
         <p className="text-gray-600 leading-relaxed">
-          I am a passionate Front-End Developer with experience in building
-          scalable applications using React, Next.js and modern UI technologies.
-          I focus on performance, clean code and user experience.
+          I am a results-driven Frontend Engineer with strong expertise in building scalable, high-performance web applications using React.js, Next.js, and modern JavaScript technologies. With hands-on experience in government and enterprise-level projects, I specialize in creating clean, maintainable code and intuitive user interfaces.
+
+          I have worked extensively on real-world systems including land management platforms, lab management software, and dynamic dashboards with secure API and SSO integrations. My focus is not just on development, but on delivering seamless user experience, optimized performance, and production-ready solutions.
+
+          I am passionate about continuous learning, problem-solving, and turning complex requirements into simple, elegant digital products.
         </p>
       </section>
 
       {/* SKILLS */}
       <section id="skills" className="bg-gray-50 py-20">
-        <h2 className="text-3xl font-bold text-center mb-10">Skills</h2>
+        <h2 className="text-3xl font-bold text-center mb-8">Skills</h2>
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-6 px-6">
+        {/* Tabs */}
+        <div className="flex justify-center gap-4 mb-10 flex-wrap">
+          {Object.keys(skillData).map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-5 py-2 rounded-full capitalize transition ${activeTab === tab
+                ? "bg-blue-600 text-white"
+                : "bg-white border hover:bg-gray-100"
+                }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
 
-          {[
-            { title: "Frontend", items: "React, Next.js, Tailwind" },
-            { title: "Backend", items: "Node.js, API Integration" },
-            { title: "Database", items: "MongoDB" },
-            { title: "State", items: "Redux, Context API" },
-          ].map((skill, i) => (
+        {/* Skill Cards */}
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 px-6">
+          {skillData[activeTab].map((skill, i) => (
             <div
               key={i}
-              className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition"
+              className="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition text-center"
             >
-              <h3 className="font-bold mb-2">{skill.title}</h3>
-              <p className="text-gray-600 text-sm">{skill.items}</p>
+              <img
+                src={skill.img}
+                alt={skill.name}
+                className="w-12 h-12 mx-auto mb-3"
+              />
+              <p className="font-medium">{skill.name}</p>
             </div>
           ))}
         </div>
       </section>
+
 
       {/* EXPERIENCE */}
       <section id="experience" className="py-20 max-w-4xl mx-auto px-6">
