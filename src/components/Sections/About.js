@@ -9,14 +9,14 @@ export default function About() {
       degree: "Bachelor of Science (BSc) in Computer Science & Engineering",
       institution: "Bangladesh University of Business and Technology (BUBT)",
       timeline: "2019 - 2023",
-      result: "GPA 3.11 / 4.00",
+      result: "",
       description: "Focused on Software Engineering, Data Structures & Algorithms, Database Management, and Machine Learning Systems.",
     },
     {
       degree: "Higher Secondary Certificate (HSC) in Science",
       institution: "Masur Ali Govt College",
       timeline: "Graduated 2019",
-      result: "GPA 3.30 / 5.00",
+      result: "",
       description: "Core studies in Computer Science, Mathematics, and Physics.",
     },
   ];
